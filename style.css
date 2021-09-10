@@ -1,0 +1,346 @@
+/*
+Variables
+*/
+
+:root {
+	/* Layout */
+	--gap: 2rem;
+}
+
+/*
+General Layout
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(94, 60, 42);
+}
+
+.wrapper {
+  width: 100vw;
+  max-width: 100%;
+  /* scrollbars (for vertical scrolling) are included in vw */
+  min-height: 100vh;
+}
+
+.rootsLight,
+header,
+section {
+  width: 100%;
+  display: flex;
+}
+
+/*
+Header
+*/
+
+header,
+.afterRoots {
+  height: 100vh;
+}
+
+header {
+  justify-content: center;
+  align-items: end;
+  background-color: skyblue;
+}
+
+/*
+Header - nav
+*/
+
+/* Header - nav - home */
+
+header nav {
+  position: fixed;
+  align-self: start;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  font-family: 'Just Another Hand', cursive;
+  color: white;
+  padding: var(--gap);
+}
+
+header nav .home {
+	font-size: 3.5rem;
+}
+
+/* Header - nav - burger menu */
+
+header nav label {
+  width: 50px;
+  height: 40px;
+  margin: calc(var(--gap) * .5);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  cursor: pointer;
+}
+
+header nav input {
+  display: none;
+}
+
+.menuBar {
+	width: 100%;
+	height: 5px;
+  border-radius: 5px;
+	background-color: white;
+  transition: .2s ease-in-out;
+}
+
+#menuToggle:checked ~ .menu {
+  background-color: white;
+}
+
+#menuToggle:checked ~ .menu label .menuBar {
+  background-color: skyblue;
+}
+
+#menuToggle:checked ~ .menu label .menuBar:nth-child(2) {
+  opacity: 0;
+}
+
+#menuToggle:checked ~ .menu label .menuBar:nth-child(1) {
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
+
+#menuToggle:checked ~ .menu label .menuBar:nth-child(3) {
+  transform: rotate(-45deg);
+  transform-origin: left center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  border-radius: calc(var(--gap) * .5);
+  overflow: hidden;
+}
+
+.menuOpen {
+  display: none;
+  width: 100px;
+  color: slategray;
+  background-color: white;
+  flex-direction: column;
+  margin-right: calc(var(--gap) * .5);
+}
+
+.menuOption {
+  width: 100%;
+  padding: calc(var(--gap) * .5);
+  cursor: pointer;
+}
+
+.menuOption:hover {
+  color: white;
+  background-color: slategray;
+}
+
+#menuToggle:checked ~ .menu .menuOpen {
+  display: flex;
+}
+
+
+/*
+Header - Flower
+*/
+
+header svg {
+  max-height: 70%;
+  max-width: 80%;
+}
+
+/*
+Flower - animation
+*/
+
+/* animation variables */
+:root {
+  --bloom-duration: 6s;
+  --bloom-shift: 0.6%;
+}
+
+#Stil,
+#leaves-front,
+#leaves-back {
+  transform-origin: bottom center;
+}
+
+/*
+Flower - animation - blooms
+*/
+
+#blooms {
+  animation: bloom-position 5s ease-in-out infinite;
+}
+
+@keyframes bloom-position {
+  0% {
+	transform: translateX(0);
+  }
+  50% {
+	transform: translateX(3%);
+  }
+  100% {
+	transform: translateX(0);
+  }
+}
+
+#bloom-1 {
+  animation: shift-1 var(--bloom-duration) ease-in-out infinite;
+}
+
+@keyframes shift-1 {
+  0% {
+	transform: translateY(0);
+  }
+  5% {
+	transform: translateY(var(--bloom-shift));
+  }
+  /* hold */
+  50% {
+	transform: translateY(var(--bloom-shift));
+  }
+  55% {
+	transform: translateY(0);
+  }
+  /* hold */
+  100% {
+	transform: translateY(0);
+  }
+}
+
+#bloom-2 {
+  animation: shift-2 var(--bloom-duration) ease-in-out infinite;
+}
+
+@keyframes shift-2 {
+  0% {
+	transform: translateY(0);
+  }
+  /* hold initial */
+  5% {
+	transform: translateY(0);
+  }
+  10% {
+	transform: translateY(var(--bloom-shift));
+  }
+  /* hold */
+  55% {
+	transform: translateY(var(--bloom-shift));
+  }
+  60% {
+	transform: translateY(0);
+  }
+  /* hold */
+  100% {
+	transform: translateY(0);
+  }
+}
+
+#bloom-3 {
+  animation: shift-3 var(--bloom-duration) ease-in-out infinite;
+}
+
+@keyframes shift-3 {
+  0% {
+	transform: translateY(0);
+  }
+  /* hold initial */
+  10% {
+	transform: translateY(0);
+  }
+  15% {
+	transform: translateY(var(--bloom-shift));
+  }
+  /* hold */
+  60% {
+	transform: translateY(var(--bloom-shift));
+  }
+  65% {
+	transform: translateY(0);
+  }
+  /* hold */
+  100% {
+	transform: translateY(0);
+  }
+}
+
+/*
+Flower - animation - Stil
+*/
+
+#Stil {
+  animation: bend 5s ease-in-out infinite;
+}
+
+@keyframes bend {
+  0% {
+	transform: skewX(0deg);
+  }
+  50% {
+	transform: skewX(-1.5deg);
+  }
+  100% {
+	transform: skewX(0deg);
+  }
+}
+
+/*
+Flower - animation - leaves
+*/
+
+#leaves-front,
+#leaves-back {
+  animation: downUp 5s ease-in-out infinite;
+}
+
+#leaves-back {
+  animation-delay: 0.5s;
+}
+
+@keyframes downUp {
+  0% {
+	transform: scaleY(1);
+  }
+  50% {
+	transform: scaleY(0.9);
+  }
+  100% {
+	transform: scaleY(1);
+  }
+}
+
+/*
+Roots
+*/
+
+.rootsLight {
+  height: 80vh;
+  background-color: rgb(192, 122, 76);
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.roots img {
+  width: 100%;
+  height: auto;
+}
+
+/*
+after roots
+*/
+
+.afterRoots {
+  background-color: green;
+}
